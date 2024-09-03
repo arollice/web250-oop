@@ -2,9 +2,9 @@
 
 class Halloween
 {
-  var $spooky;
+  protected $spooky;
 
-  function isSpooky($spooky)
+  public function isSpooky($spooky)
   {
     if (!$this->spooky) {
       return "Nope, not spooky.";
@@ -16,10 +16,10 @@ class Halloween
 
 class Ghost extends Halloween
 {
-  var $spooky = True;
-  var $name;
+  protected $spooky = True;
+  public $name;
 
-  function scareMe()
+  public function scareMe()
   {
     return "BOO!";
   }
@@ -27,11 +27,11 @@ class Ghost extends Halloween
 
 class Candy extends Halloween
 {
-  var $type;
-  var $spooky = False;
-  var $treat = True;
+  private $type;
+  protected $spooky = False;
+  public $treat = True;
 
-  function trickOrTreat($treat)
+  public function trickOrTreat($treat)
   {
     echo "<i>\"Trick or treat!\" </i><br />";
 
@@ -39,6 +39,18 @@ class Candy extends Halloween
       echo "🍫 (treat) <br />";
     else
       echo "💩 (trick) <br />";
+  }
+
+  //Setter
+  public function setTypeOfCandy($value)
+  {
+    return $this->type = $value;
+  }
+
+  //Getter
+  public function getTypeOfCandy()
+  {
+    return $this->type;
   }
 }
 
@@ -51,8 +63,8 @@ echo $casper->scareMe() . "<br />";
 echo "---------------------- <br />";
 
 $chocolate = new Candy;
-$chocolate->type = "Chocolate";
+$chocolate->setTypeOfCandy("Chocolate");
 $chocolate->treat = False;
-echo " Type of candy: " . $chocolate->type . "<br/>";
+echo " Type of candy: " . $chocolate->getTypeOfCandy() . "<br/>";
 echo "Is it spooky? " . $chocolate->isSpooky($spooky) . "<br/>";
 echo $chocolate->trickOrTreat($treat);
