@@ -1,5 +1,6 @@
 <?php
 
+// Bird Class
 class Bird
 {
   var $common_name;
@@ -9,13 +10,12 @@ class Bird
 
   function song($lyrics)
   {
-    echo "Song: " . $lyrics . "<br />";
-    echo "------------------- <br />";
+    echo "Song: " . $lyrics;
   }
 
   function can_fly()
   {
-    echo "The " . $this->common_name . " bird can fly. <br />";
+    return "The " . $this->common_name . " bird can fly.";
   }
 }
 
@@ -25,15 +25,18 @@ $bird1->food = "Popcorn & jelly beans";
 $bird1->nest_placement = "Snoopy's house";
 $bird1->conservation_level = "High";
 
+//Output for Bird 1
 
-$bird1_vars = get_object_vars($bird1);
-echo  $bird1->common_name . "'s values:<br />";
-echo "<pre>";
-print_r($bird1_vars);
-echo "<pre>";
-echo $bird1->can_fly();
-echo $bird1->song("Little birdie why do you fly upside down?");
+echo "Common Name: " . $bird1->common_name . "<br/>";
+echo "Food: " . $bird1->food . "<br/>";
+echo "Nest Placement: " . $bird1->nest_placement . "<br/>";
+echo "Conservation Level: " . $bird1->conservation_level . "<br/>";
+echo "Ability to fly: " . $bird1->can_fly() . "<br/>";
+echo $bird1->song("Little birdie why do you fly upside down?") . "<br/>";
 
+echo "------------------- <br />";
+
+//Output for Bird2
 
 $bird2 = new Bird;
 $bird2->common_name = "Toucan Sam";
@@ -41,11 +44,9 @@ $bird2->food = "Fruit loops";
 $bird2->nest_placement = "On your cereal box";
 $bird2->conservation_level = "High";
 
-
-$bird2_vars = get_object_vars($bird2);
-echo $bird2->common_name . "'s values:<br />";
-echo "<pre>";
-print_r($bird2_vars);
-echo "<pre>";
-echo $bird2->can_fly();
-echo $bird2->song("Follow your noooooose!");
+echo "Common Name: " . $bird2->common_name . "<br/>";
+echo "Food: " . $bird2->food . "<br/>";
+echo "Nest Placement: " . $bird2->nest_placement . "<br/>";
+echo "Conservation Level: " . $bird2->conservation_level . "<br/>";
+echo "Ability to fly: " . $bird2->can_fly() . "<br/>";
+echo $bird2->song("Follow your noooose!") . "<br/>";
