@@ -9,7 +9,7 @@ class Halloween
     if (!$this->spooky) {
       return "Nope, not spooky.";
     } else {
-      return "Definitely suuuuper spooky.";
+      return "Definitely spooky.";
     }
   }
 }
