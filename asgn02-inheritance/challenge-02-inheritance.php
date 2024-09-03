@@ -2,21 +2,20 @@
 
 class Halloween
 {
-  var $spooky;
+  var $spooky = True;
 
   function isSpooky($spooky)
   {
     if (!$this->spooky) {
       return "Nope, not spooky.";
     } else {
-      return "Definitely suuuuper spooky.";
+      return "Definitely spooky.";
     }
   }
 }
 
 class Ghost extends Halloween
 {
-  var $spooky = True;
   var $name;
 
   function scareMe()
