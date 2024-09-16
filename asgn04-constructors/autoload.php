@@ -12,5 +12,4 @@ spl_autoload_register('my_autoload');
 
 $acadianFc = new Bird(['commonName' => 'Acadian Flycatcher', 'latinName' => 'Empidonax virescens']);
 
-echo "Common Name: " . $acadianFc->commonName . "<br/>";
-echo "Latin Name: " . $acadianFc->latinName . "<br/>";
+echo  $acadianFc->commonName;
