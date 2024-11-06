@@ -13,11 +13,20 @@ class Bird
 
   static public function find_by_sql($sql)
   {
-    return self::$database->query($sql);
+    $result = self::$database->query($sql);
     if (!$result) {
       exit("Database query failed.");
     }
-    return $result;
+    //Convert the results into objects
+    $object_array = [];
+
+    while ($row = $result->fetch_assoc()) {
+      $object_array[] = self::instantiate($row);
+    }
+
+    $result->free();
+
+    return $object_array;
   }
 
   static public function find_all()
@@ -26,8 +35,33 @@ class Bird
     return self::find_by_sql($sql);
   }
 
-  /* End of Active REcord Code */
+  static public function find_by_id($id)
+  {
+    $sql = "SELECT * FROM birds ";
+    $sql .= "WHERE id = '" . self::$database->escape_string($id) . "'"; // Mandatory space before WHERE to avoid concatenation issues
+    $obj_array = self::find_by_sql($sql);
+    if (!empty($obj_array)) {
+      return array_shift($obj_array);
+    } else {
+      return false;
+    }
+  }
 
+  static protected function instantiate($record)
+  {
+    $object = new self;
+    //automatic assignment faster easier and usable
+    foreach ($record as $property => $value) {
+      if (property_exists($object, $property)) {
+        $object->$property = $value;
+      }
+    }
+    return $object;
+  }
+
+  /* End of Active Record Code */
+
+  public $id;
   public $common_name;
   public $habitat;
   public $food;
@@ -70,10 +104,10 @@ class Bird
   }
 
 
-  /*
-  Create a public method called conservation(). This method should mimic the
-    public function condition() from the bicycle.class.php file
-    */
+  public function name()
+  {
+    return "{$this->common_name}";
+  }
 
 
   public function conservation()
