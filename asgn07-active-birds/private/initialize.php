@@ -30,10 +30,10 @@ foreach (glob('classes/*.class.php') as $file) {
 // Autoload class definitions
 function my_autoload($class)
 {
-  if (preg_match('/\A\w+\Z/', $class)) {
-    include('classes/' . $class . '.class.php');
-  }
+  include(PRIVATE_PATH . '/classes/' . strtolower($class) . '.class.php'); // Convert class name to lowercase
 }
+
+
 spl_autoload_register('my_autoload');
 
 $database = db_connect();
